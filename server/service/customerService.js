@@ -1,4 +1,4 @@
-import customerDAO from "../dao/customer.js";
+import customerDAO from '../dao/customerDao.js';
 
 class CustomerService {
   createCustomer(customerDto) {
@@ -7,8 +7,13 @@ class CustomerService {
   }
 
   deleteCustomer(customerDto) {
-    const { id } = customerDto;
+    const id = customerDto;
     return customerDAO.deleteCustomer(id);
+  }
+
+  getCustomerById(customerDto) {
+    const id = customerDto;
+    return customerDAO.getCustomerById(id);
   }
 }
 

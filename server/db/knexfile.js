@@ -4,21 +4,24 @@
  * @type { Object.<string, import("knex").Knex.Config> }
  */
 export default {
-
   development: {
-    client: 'postgresql',
+    client: "postgresql",
     connection: {
-      database: 'eztix',
-      user: 'eztix',
-      password: 'password'
+      database: "eztix",
+      user: "eztix",
+      password: "password",
     },
     pool: {
       min: 2,
-      max: 10
+      max: 10,
     },
     migrations: {
-      tableName: 'knex_migrations'
-    }
+      tableName: "knex_migrations",
+      directory: "./migrations",
+    },
+    seeds: {
+      directory: "./seeds",
+    },
   },
 
   // staging: {
@@ -52,5 +55,4 @@ export default {
   //     tableName: 'knex_migrations'
   //   }
   // }
-
 };
