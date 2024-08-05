@@ -6,6 +6,10 @@ class CustomerService {
     return customerDAO.createCustomer(name, phone, password);
   }
 
+  getAllCustomers() {
+    return customerDAO.getAllCustomers();
+  }
+
   deleteCustomer(customerDto) {
     const id = customerDto;
     return customerDAO.deleteCustomer(id);
@@ -14,6 +18,11 @@ class CustomerService {
   getCustomerById(customerDto) {
     const id = customerDto;
     return customerDAO.getCustomerById(id);
+  }
+
+  updateCustomer(customerDto) {
+    const { id, data } = customerDto;
+    return customerDAO.updateCustomer(id, data);
   }
 }
 

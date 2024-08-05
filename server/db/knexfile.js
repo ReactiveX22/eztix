@@ -3,24 +3,30 @@
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
+
+import config from '../config.js';
+
+const { host, database, user, password } = config.db;
+
 export default {
   development: {
-    client: "postgresql",
+    client: 'postgresql',
     connection: {
-      database: "eztix",
-      user: "eztix",
-      password: "password",
+      host: host,
+      database: database,
+      user: user,
+      password: password,
     },
     pool: {
       min: 2,
       max: 10,
     },
     migrations: {
-      tableName: "knex_migrations",
-      directory: "./migrations",
+      tableName: 'knex_migrations',
+      directory: './migrations',
     },
     seeds: {
-      directory: "./seeds",
+      directory: './seeds',
     },
   },
 
