@@ -4,7 +4,7 @@
  * @type { Object.<string, import("knex").Knex.Config> }
  */
 
-import config from '../config.js';
+import config from './config.js';
 
 const { host, database, user, password } = config.db;
 
@@ -23,10 +23,10 @@ export default {
     },
     migrations: {
       tableName: 'knex_migrations',
-      directory: './migrations',
+      directory: './db/migrations',
     },
     seeds: {
-      directory: './seeds',
+      directory: './db/seeds',
     },
   },
 

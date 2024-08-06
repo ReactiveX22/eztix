@@ -5,6 +5,9 @@
 export async function seed(knex) {
   // Deletes ALL existing entries
   await knex('route').del();
+
+  await knex.schema.raw('ALTER SEQUENCE route_id_seq RESTART WITH 1');
+
   await knex('route').insert([
     {
       name: 'Dhaka-Chittagong',
