@@ -7,6 +7,8 @@ router.post('/', customerController.createCustomer);
 
 router.get('/', customerController.getAllCustomers);
 
+router.get('/phone/:phone', customerController.getCustomerByPhone);
+
 router.get('/:id', customerController.getCustomerById);
 
 router.delete('/:id', customerController.deleteCustomer);

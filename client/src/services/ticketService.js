@@ -10,6 +10,15 @@ class TicketService {
       throw new Error('Error fetching routes!');
     }
   };
+
+  createTicket = async (ticketData) => {
+    try {
+      const response = await api.post(endPoints.tickets.create, ticketData);
+      return response.data;
+    } catch (error) {
+      throw new Error('Error creating ticket!');
+    }
+  };
 }
 
 export default new TicketService();

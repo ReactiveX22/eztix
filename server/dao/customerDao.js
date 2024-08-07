@@ -25,6 +25,14 @@ class CustomerDAO {
     return customer;
   }
 
+  async getCustomerByPhone(phone) {
+    const customer = await db(this.table)
+      .where('phone', phone)
+      .select('id', 'phone')
+      .first();
+    return customer;
+  }
+
   async getAllCustomers() {
     const customer = await db(this.table).select();
     return customer;

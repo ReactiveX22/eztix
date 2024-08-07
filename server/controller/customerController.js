@@ -29,6 +29,18 @@ class CustomerController {
     }
   }
 
+  async getCustomerByPhone(req, res) {
+    try {
+      const { phone } = req.params;
+
+      const customer = await customerService.getCustomerByPhone(phone);
+
+      res.status(201).json(customer);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  }
+
   async deleteCustomer(req, res) {
     try {
       const { id } = req.params;

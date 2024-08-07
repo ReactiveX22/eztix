@@ -36,7 +36,9 @@ const NavBar = () => {
             }
             to='/login'
           >
-            login
+            {sessionStorage.getItem('phoneNumber')
+              ? sessionStorage.getItem('phoneNumber')
+              : 'login'}
           </NavLink>
         </li>
       </ul>

@@ -5,7 +5,6 @@ class TicketDAO {
 
   async createTicket(data) {
     const [id] = await db(this.table).insert(data).returning('id');
-
     return id;
   }
 

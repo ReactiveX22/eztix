@@ -5,6 +5,7 @@ import RoutesPage from './pages/RoutesPage';
 import HomePage from './pages/HomePage';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
+import LoginPage from './pages/LoginPage';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -21,7 +22,7 @@ function App() {
             <Routes>
               <Route path='/' element={<HomePage />} />
               <Route path='/buy' element={<RoutesPage />} />
-              <Route path='/login' element={<HomePage />} />
+              <Route path='/login' element={<LoginPage />} />
             </Routes>
           </main>
 

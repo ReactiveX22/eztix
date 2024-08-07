@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useCoachContext } from '../contexts/CoachContext';
+import { useTicketContext } from '../contexts/TicketContext';
 
 const BusSeating = () => {
-  const [selectedSeats, setSelectedSeats] = useState(new Set());
+  const { selectedSeats, setSelectedSeats } = useTicketContext();
   const { bookedSeats } = useCoachContext();
 
   const seats = Array.from({ length: 40 }, (_, index) => {

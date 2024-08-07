@@ -23,4 +23,7 @@
   .availableSeat {
     @apply cursor-pointer border-neutral-500;
   }
+  .inputs {
+    @apply w-full rounded-md border border-neutral-500 bg-background p-2 text-sm focus:outline-none;
+  }
 }

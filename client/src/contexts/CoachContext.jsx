@@ -13,7 +13,6 @@ export const CoachProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const [bookedSeats, setBookedSeats] = useState(new Set());
   const { selectedRoute } = useRouteContext();
-
   const { selectedDate, selectedMonth, selectedYear } = useDateContext();
 
   useEffect(() => {
@@ -55,20 +54,20 @@ export const CoachProvider = ({ children }) => {
     loadCoaches();
   }, [selectedRoute, selectedDate, selectedMonth, selectedYear]);
 
+  const loadBookedSeats = async () => {
+    if (!selectedCoach) return;
+
+    try {
+      const response =
+        await ticketService.fetchSeatNumbersByCoach(selectedCoach);
+      const seatNumbers = response[0]?.seat_numbers || [];
+      setBookedSeats(new Set(seatNumbers));
+    } catch (error) {
+      setError(error);
+    }
+  };
+
   useEffect(() => {
-    const loadBookedSeats = async () => {
-      if (!selectedCoach) return;
-
-      try {
-        const response =
-          await ticketService.fetchSeatNumbersByCoach(selectedCoach);
-        const seatNumbers = response[0]?.seat_numbers || [];
-        setBookedSeats(new Set(seatNumbers));
-      } catch (error) {
-        setError(error);
-      }
-    };
-
     loadBookedSeats();
   }, [selectedCoach]);
 
@@ -76,9 +75,11 @@ export const CoachProvider = ({ children }) => {
     coaches,
     selectedCoach,
     setSelectedCoach,
+    setBookedSeats,
     loading,
     error,
     bookedSeats,
+    loadBookedSeats,
   };
 
   return (

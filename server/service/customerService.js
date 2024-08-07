@@ -20,6 +20,11 @@ class CustomerService {
     return customerDAO.getCustomerById(id);
   }
 
+  getCustomerByPhone(customerDto) {
+    const phone = customerDto;
+    return customerDAO.getCustomerByPhone(phone);
+  }
+
   updateCustomer(customerDto) {
     const { id, data } = customerDto;
     return customerDAO.updateCustomer(id, data);

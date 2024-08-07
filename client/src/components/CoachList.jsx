@@ -1,11 +1,20 @@
-import React from 'react';
-import { useCoachContext } from '../contexts/CoachContext'; // Import the context hook
 import { IconCircle, IconCircleFilled } from '@tabler/icons-react';
 import { format } from 'date-fns';
+import React, { useEffect } from 'react';
+import { useCoachContext } from '../contexts/CoachContext';
+import { useTicketContext } from '../contexts/TicketContext';
 
 const CoachList = () => {
-  const { coaches, selectedCoach, setSelectedCoach, loading, error } =
-    useCoachContext();
+  const {
+    coaches,
+    selectedCoach,
+    setSelectedCoach,
+    setBookedSeats,
+    loading,
+    error,
+  } = useCoachContext();
+
+  const { setSelectedSeats } = useTicketContext();
 
   if (loading) return <p>Loading coaches...</p>;
   if (error) return <p>Error loading coaches.</p>;
@@ -20,6 +29,11 @@ const CoachList = () => {
       prevSelectedCoach === coachId ? null : coachId
     );
   };
+
+  useEffect(() => {
+    setBookedSeats(new Set());
+    setSelectedSeats(new Set());
+  }, [selectedCoach]);
 
   return (
     <div className='flex flex-col gap-3 text-center'>
@@ -38,7 +52,7 @@ const CoachList = () => {
             return (
               <li
                 key={coach.id}
-                onClick={() => !isExpired && handleCoachClick(coach.id)} // Prevent selection if expired
+                onClick={() => !isExpired && handleCoachClick(coach.id)}
                 className={`min-w-[15rem] select-none rounded-md border p-4 ${
                   selectedCoach === coach.id && !isExpired
                     ? 'border-neutral'

@@ -12,8 +12,15 @@ const endPoints = {
   },
   tickets: {
     all: '/tickets',
+    create: '/tickets',
     seatNumbersByCoachId(id) {
       return `${this.all}/coaches/${id}/seats`;
+    },
+  },
+  customer: {
+    all: '/customers',
+    getCustomerByPhone(phone) {
+      return `${this.all}/phone/${phone}`;
     },
   },
 };

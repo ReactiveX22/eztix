@@ -6,17 +6,14 @@ import { useCoachContext } from '../contexts/CoachContext';
 const RouteList = () => {
   const { routes, selectedRoute, setSelectedRoute, loading, error } =
     useRouteContext();
-  const { setSelectedCoach, selectedCoach } = useCoachContext();
+  const { setSelectedCoach } = useCoachContext();
 
   if (loading) return <p>Loading routes...</p>;
   if (error) return <p>Error loading routes.</p>;
 
-  useEffect(
-    (prev) => {
-      if (routes !== prev) setSelectedCoach(null);
-    },
-    [routes]
-  );
+  useEffect(() => {
+    setSelectedCoach(null);
+  }, [selectedRoute]);
 
   return (
     <div className='flex flex-col gap-3 text-end'>
