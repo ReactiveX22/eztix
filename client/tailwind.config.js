@@ -7,10 +7,22 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: colors.emerald[500],
+        primary: colors.green[600],
         background: colors.zinc[950],
-        secondary: colors.emerald[950],
+        secondary: colors.green[600],
         neutral: colors.zinc[100],
+        'neutral-500': colors.zinc[500],
+      },
+      fontFamily: {
+        inter: ['Inter', 'sans-serif'],
+      },
+      fontSize: {
+        base: '1rem',
+        sm: '0.77rem',
+        lg: '1.7778rem',
+      },
+      lineHeight: {
+        normal: '1.6',
       },
     },
   },

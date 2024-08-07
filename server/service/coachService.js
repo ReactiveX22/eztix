@@ -20,6 +20,10 @@ class CoachService {
   updateCoach(coachDto) {
     return CoachDAO.updateCoach(coachDto.id, coachDto.data);
   }
+
+  getCoachesByRouteId(coachDto) {
+    return CoachDAO.getCoachesByRouteId(coachDto);
+  }
 }
 
 export default new CoachService();

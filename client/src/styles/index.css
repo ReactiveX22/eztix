@@ -1,3 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    font-size: 18px;
+  }
+}
+
+@layer components {
+  body {
+    @apply bg-background font-inter text-base text-neutral;
+  }
+  .bookedSeat {
+    @apply cursor-not-allowed border-red-900 text-red-600 opacity-50;
+  }
+  .selectedSeat {
+    @apply cursor-pointer bg-secondary;
+  }
+  .availableSeat {
+    @apply cursor-pointer border-neutral-500;
+  }
+}

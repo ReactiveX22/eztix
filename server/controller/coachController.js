@@ -49,6 +49,16 @@ class CoachController {
       res.status(500).json({ error: error.message });
     }
   }
+
+  async getCoachesByRouteId(req, res) {
+    try {
+      const { route_id } = req.params;
+      const coaches = await CoachService.getCoachesByRouteId(route_id);
+      res.status(200).json(coaches);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
 }
 
 export default new CoachController();

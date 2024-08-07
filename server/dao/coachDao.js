@@ -4,9 +4,7 @@ class CoachDAO {
   table = 'coach';
 
   async createCoach(data) {
-    const [id] = await db(this.table)
-      .insert(data)
-      .returning('id');
+    const [id] = await db(this.table).insert(data).returning('id');
 
     return id;
   }
@@ -22,13 +20,18 @@ class CoachDAO {
   }
 
   async getAllCoachs() {
-    const coachs = await db(this.table).select();
-    return coachs;
+    const coaches = await db(this.table).select();
+    return coaches;
   }
 
   async updateCoach(id, data) {
     const updatedRows = await db(this.table).where('id', id).update(data);
     return updatedRows;
+  }
+
+  async getCoachesByRouteId(id) {
+    const coaches = await db(this.table).where('route_id', id).select();
+    return coaches;
   }
 }
 

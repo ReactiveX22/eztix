@@ -1,35 +1,34 @@
-import { useEffect, useState } from 'react';
-import routeService from '../services/routeService';
+import React from 'react';
+import { RouteProvider } from '../contexts/RouteContext';
+import { DateProvider } from '../contexts/DateContext';
+import { CoachProvider } from '../contexts/CoachContext';
+import Coach from '../components/Coach';
+import CoachList from '../components/CoachList';
+import DatePicker from '../components/DatePicker';
+import RouteList from '../components/RouteList';
 
 const RoutesPage = () => {
-  const [routes, setRoutes] = useState([]);
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    const loadRoutes = async () => {
-      try {
-        const data = await routeService.fetchRoutes();
-        setRoutes(data);
-      } catch (error) {
-        // err
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadRoutes();
-  }, []);
-
   return (
-    <div className='flex w-full items-center'>
-      <div className='mx-auto'>
-        <h1>Select A Route</h1>
-        <ul>
-          {routes.map((route) => (
-            <li key={route.id}>{route.name}</li>
-          ))}
-        </ul>
-      </div>
-    </div>
+    <RouteProvider>
+      <DateProvider>
+        <CoachProvider>
+          <div className='flex w-full justify-center gap-10'>
+            <div className='flex flex-col gap-8'>
+              <RouteList />
+              <DatePicker monthsToShow={2} />
+            </div>
+            <div className='h-auto w-[1px] bg-zinc-800'></div>
+            <div>
+              <CoachList />
+            </div>
+            <div className='h-auto w-[1px] bg-zinc-800'></div>
+            <div>
+              <Coach />
+            </div>
+          </div>
+        </CoachProvider>
+      </DateProvider>
+    </RouteProvider>
   );
 };
 
