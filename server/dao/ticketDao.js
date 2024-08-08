@@ -4,7 +4,28 @@ class TicketDAO {
   table = 'ticket';
 
   async createTicket(data) {
-    const [id] = await db(this.table).insert(data).returning('id');
+    const { seat_number, coach_id } = data;
+
+    const id = await db.transaction(
+      async (trx) => {
+        const existingTicket = await trx(this.table)
+          .where({
+            seat_number,
+            coach_id,
+          })
+          .first();
+
+        if (existingTicket) {
+          throw new Error('Seat is not available');
+        }
+
+        const [newId] = await trx(this.table).insert(data).returning('id');
+
+        return newId;
+      },
+      { isolationLevel: 'serializable' }
+    );
+
     return id;
   }
 

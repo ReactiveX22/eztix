@@ -26,7 +26,7 @@ export function up(knex) {
       .inTable('coach')
       .onDelete('CASCADE');
 
-    table.unique(['seat_number', 'customer_id', 'coach_id']);
+    table.unique(['seat_number', 'coach_id']);
   });
 }
 
