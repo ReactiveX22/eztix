@@ -1,8 +1,18 @@
 import { IconTicket } from '@tabler/icons-react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useCustomerContext } from '../contexts/CustomerContext';
+import LogoutBtn from './LogoutBtn';
 
 const NavBar = () => {
+  const { phoneNumber, setPhoneNumber } = useCustomerContext();
+
+  useEffect(() => {
+    const pN = sessionStorage.getItem('phoneNumber');
+
+    setPhoneNumber(pN);
+  });
+
   return (
     <nav className='mx-auto flex w-[65%] justify-between border-b border-zinc-800 p-2'>
       <div className='text-2xl'>
@@ -34,13 +44,28 @@ const NavBar = () => {
             className={({ isActive }) =>
               isActive ? 'text-neutral' : 'text-neutral-500 hover:text-neutral'
             }
-            to='/login'
+            to='/coach/create'
           >
-            {sessionStorage.getItem('phoneNumber')
-              ? sessionStorage.getItem('phoneNumber')
-              : 'login'}
+            create coach
           </NavLink>
         </li>
+        <li>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? 'text-neutral' : 'text-neutral-500 hover:text-neutral'
+            }
+            to='/login'
+          >
+            {phoneNumber || 'login'}
+          </NavLink>
+        </li>
+        {phoneNumber ? (
+          <li>
+            <LogoutBtn />
+          </li>
+        ) : (
+          ''
+        )}
       </ul>
     </nav>
   );

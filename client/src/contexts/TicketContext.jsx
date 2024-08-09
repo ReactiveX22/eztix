@@ -14,7 +14,7 @@ export const TicketProvider = ({ children }) => {
       const ticketsData = Array.from(selectedSeats).map((seat) => ({
         seat_number: seat,
         coach_id: selectedCoach,
-        customer_id: sessionStorage.getItem('customerId'), // Fixed value for now
+        customer_id: sessionStorage.getItem('customerId'),
       }));
 
       return ticketsData;
@@ -23,8 +23,8 @@ export const TicketProvider = ({ children }) => {
   };
 
   const createTickets = async () => {
-    const ticketsData = createTicketObjects(); // Get ticket data
-    if (ticketsData.length === 0) return; // Exit if no tickets to create
+    const ticketsData = createTicketObjects();
+    if (ticketsData.length === 0) return;
 
     try {
       const createdTicketIdsPromises = ticketsData.map((ticketData) =>

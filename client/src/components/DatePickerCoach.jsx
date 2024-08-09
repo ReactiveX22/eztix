@@ -13,7 +13,7 @@ import {
   isAfter,
 } from 'date-fns';
 
-const DatePicker = ({ monthsToShow }) => {
+const DatePickerCoach = ({ monthsToShow }) => {
   const {
     selectedDate,
     setSelectedDate,
@@ -141,4 +141,4 @@ const DatePicker = ({ monthsToShow }) => {
   );
 };
 
-export default DatePicker;
+export default DatePickerCoach;

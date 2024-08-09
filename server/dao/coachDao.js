@@ -4,9 +4,9 @@ class CoachDAO {
   table = 'coach';
 
   async createCoach(data) {
-    const [id] = await db(this.table).insert(data).returning('id');
+    const coach = await db(this.table).insert(data).returning('*');
 
-    return id;
+    return coach;
   }
 
   async deleteCoach(id) {

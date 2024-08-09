@@ -1,23 +1,27 @@
 import React, { useState } from 'react';
 import loginService from '../services/loginService';
+import { useNavigate } from 'react-router-dom';
+import { useCustomerContext } from '../contexts/CustomerContext';
 
 function LoginForm() {
-  const [phoneNumber, setPhoneNumber] = useState('01653987005');
+  const { phoneNumber, setPhoneNumber } = useCustomerContext();
+  const [phone, setPhone] = useState('01653987005');
   const [password, setPassword] = useState('123');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // sessionStorage.setItem('phoneNumber', phoneNumber);
-    // sessionStorage.setItem('password', password);
-
-    const customer = await loginService.getCustomerByPhone(phoneNumber);
-    sessionStorage.setItem('phoneNumber', customer.phone);
-    sessionStorage.setItem('customerId', customer.id);
-    // sessionStorage.setItem('password', password);
-    console.log(
-      sessionStorage.getItem('phoneNumber'),
-      sessionStorage.getItem('customerId')
-    );
+    try {
+      const customer = await loginService.getCustomerByPhone(phone);
+      sessionStorage.setItem('phoneNumber', customer.phone);
+      sessionStorage.setItem('customerId', customer.id);
+      setPhoneNumber(customer.phone);
+      console.log(phoneNumber);
+    } catch (error) {
+      console.error('Login failed', error);
+    } finally {
+      navigate('/buy');
+    }
   };
 
   return (
@@ -32,8 +36,8 @@ function LoginForm() {
             id='phone'
             className='inputs'
             placeholder='012345679'
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
             required
           />
         </div>

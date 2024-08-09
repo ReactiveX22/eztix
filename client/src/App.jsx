@@ -1,21 +1,22 @@
-import { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
-import RoutesPage from './pages/RoutesPage';
-import HomePage from './pages/HomePage';
-import NavBar from './components/NavBar';
 import Footer from './components/Footer';
+import NavBar from './components/NavBar';
+import { CustomerProvider } from './contexts/CustomerContext';
+import CreateCoachPage from './pages/CreateCoachPage';
+import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
+import RoutesPage from './pages/RoutesPage';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
       <Router>
         <div className='flex h-screen w-screen flex-col justify-between'>
           <header>
-            <NavBar />
+            <CustomerProvider>
+              <NavBar />
+            </CustomerProvider>
           </header>
 
           <main>
@@ -23,6 +24,7 @@ function App() {
               <Route path='/' element={<HomePage />} />
               <Route path='/buy' element={<RoutesPage />} />
               <Route path='/login' element={<LoginPage />} />
+              <Route path='/coach/create' element={<CreateCoachPage />} />
             </Routes>
           </main>
 

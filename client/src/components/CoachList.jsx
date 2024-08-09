@@ -36,12 +36,12 @@ const CoachList = () => {
   }, [selectedCoach]);
 
   return (
-    <div className='flex flex-col gap-3 text-center'>
+    <div className='flex h-full flex-col gap-3 text-center'>
       <h1 className='px-2 text-base font-bold'>Select A Coach</h1>
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <ul className='min-w-[15rem] space-y-3 py-1'>
+        <ul className='scrollbar-thin h-full min-w-[15rem] space-y-3 overflow-y-scroll px-2 py-1'>
           {coaches.length === 0 ? (
             <p className='text-sm text-neutral-500'>No Coaches Found!</p>
           ) : (

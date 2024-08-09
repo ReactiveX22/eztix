@@ -3,8 +3,8 @@ import CoachService from '../service/coachService.js';
 class CoachController {
   async createCoach(req, res) {
     try {
-      const id = await CoachService.createCoach(req.body);
-      res.status(201).json({ id });
+      const coach = await CoachService.createCoach(req.body);
+      res.status(201).json(coach);
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
