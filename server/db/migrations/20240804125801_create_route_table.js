@@ -9,6 +9,8 @@ export function up(knex) {
     table.string('start_location').notNullable();
     table.string('end_location').notNullable();
     table.timestamps(true, true);
+
+    table.unique(['start_location', 'end_location']);
   });
 }
 

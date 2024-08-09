@@ -54,6 +54,16 @@ const NavBar = () => {
             className={({ isActive }) =>
               isActive ? 'text-neutral' : 'text-neutral-500 hover:text-neutral'
             }
+            to='/route/create'
+          >
+            create route
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? 'text-neutral' : 'text-neutral-500 hover:text-neutral'
+            }
             to='/login'
           >
             {phoneNumber || 'login'}

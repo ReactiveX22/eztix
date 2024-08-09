@@ -19,7 +19,7 @@ const RoutesPage = () => {
             <div className='flex h-[520px] w-full justify-center gap-10'>
               <div className='flex flex-col gap-8'>
                 <RouteList />
-                <DatePicker monthsToShow={2} />
+                <DatePicker monthsToShow={1} />
               </div>
               <div className='h-auto w-[1px] bg-zinc-800'></div>
               <div>

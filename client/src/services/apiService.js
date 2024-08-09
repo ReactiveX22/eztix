@@ -3,7 +3,7 @@ import axios, { all } from 'axios';
 const api = axios.create({ baseURL: 'http://localhost:5000/api' });
 
 const endPoints = {
-  routes: '/routes',
+  routes: { all: '/routes' },
   coaches: {
     all: '/coaches',
     byRouteId(id) {

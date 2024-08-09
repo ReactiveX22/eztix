@@ -7,12 +7,13 @@
 @layer base {
   html {
     font-size: 18px;
+    @apply antialiased;
   }
 }
 
 @layer components {
   body {
-    @apply scrollbar-thin scrollbar-track-zinc-900 scrollbar-thumb-zinc-800 scroll-smooth bg-background font-inter text-base text-neutral;
+    @apply scrollbar-thin scrollbar-track-transparent scrollbar-thumb-zinc-800 scrollbar-thumb-rounded-md scroll-smooth bg-background font-inter text-base text-neutral;
   }
   .bookedSeat {
     @apply cursor-not-allowed border-red-900 text-red-600 opacity-50;

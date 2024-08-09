@@ -22,9 +22,9 @@ export default {
         lg: '1.7778rem',
       },
       lineHeight: {
-        normal: '1.6',
+        normal: '1.1',
       },
     },
   },
-  plugins: [require('tailwind-scrollbar')],
+  plugins: [require('tailwind-scrollbar')({ nocompatible: true })],
 };

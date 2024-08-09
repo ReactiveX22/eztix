@@ -20,7 +20,8 @@ function LoginForm() {
     } catch (error) {
       console.error('Login failed', error);
     } finally {
-      navigate('/buy');
+      // navigate('/buy');
+      window.location.href = '/buy';
     }
   };
 

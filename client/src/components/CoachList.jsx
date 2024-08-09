@@ -41,7 +41,7 @@ const CoachList = () => {
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <ul className='scrollbar-thin h-full min-w-[15rem] space-y-3 overflow-y-scroll px-2 py-1'>
+        <ul className='scrollbar-thin h-full min-w-[15rem] space-y-3 overflow-y-auto px-2 py-1'>
           {coaches.length === 0 ? (
             <p className='text-sm text-neutral-500'>No Coaches Found!</p>
           ) : (

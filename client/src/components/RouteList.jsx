@@ -16,9 +16,9 @@ const RouteList = () => {
   }, [selectedRoute]);
 
   return (
-    <div className='flex flex-col gap-3 text-end'>
+    <div className='flex h-[8.5rem] flex-col gap-3 text-end'>
       <h1 className='px-2 text-base font-bold'>Select A Route</h1>
-      <ul className='text-sm'>
+      <ul className='scrollbar-thin h-full overflow-y-auto text-sm'>
         {routes.map((route) => (
           <li
             key={route.id}
