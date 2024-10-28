@@ -38,7 +38,7 @@ const CoachForm = () => {
 
   return (
     <div className='flex flex-col gap-10 px-2'>
-      <div>
+      <div className='flex flex-col gap-4'>
         <h1 className='text-base font-bold'>Enter Coach Info</h1>
         <form
           onSubmit={handleSubmit}

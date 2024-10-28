@@ -8,6 +8,7 @@ import CreateRoutePage from './pages/CreateRoutePage';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import RoutesPage from './pages/RoutesPage';
+import MyTicketsPage from './pages/MyTicketsPage';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
               <Route path='/login' element={<LoginPage />} />
               <Route path='/coach/create' element={<CreateCoachPage />} />
               <Route path='/route/create' element={<CreateRoutePage />} />
+              <Route path='/my-tickets' element={<MyTicketsPage />} />
             </Routes>
           </main>
 

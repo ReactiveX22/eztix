@@ -3,6 +3,7 @@ import { format } from 'date-fns';
 import React, { useEffect } from 'react';
 import { useCoachContext } from '../contexts/CoachContext';
 import { useTicketContext } from '../contexts/TicketContext';
+import { useDateContext } from '../contexts/DateContext';
 
 const CoachList = () => {
   const {
@@ -15,6 +16,8 @@ const CoachList = () => {
   } = useCoachContext();
 
   const { setSelectedSeats } = useTicketContext();
+
+  const { selectedDate } = useDateContext();
 
   if (loading) return <p>Loading coaches...</p>;
   if (error) return <p>Error loading coaches.</p>;
@@ -35,19 +38,28 @@ const CoachList = () => {
     setSelectedSeats(new Set());
   }, [selectedCoach]);
 
+  const filteredCoaches = selectedDate
+    ? coaches.filter((coach) => {
+        const coachDate = new Date(coach.departure_time)
+          .toISOString()
+          .split('T')[0];
+        return coachDate === selectedDate;
+      })
+    : coaches;
+
   return (
     <div className='flex h-full flex-col gap-3 text-center'>
       <h1 className='px-2 text-base font-bold'>Select A Coach</h1>
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <ul className='scrollbar-thin h-full min-w-[15rem] space-y-3 overflow-y-auto px-2 py-1'>
-          {coaches.length === 0 ? (
+        <ul className='h-full min-w-[15rem] space-y-3 overflow-y-auto px-2 py-1 scrollbar-thin'>
+          {filteredCoaches.length === 0 ? (
             <p className='text-sm text-neutral-500'>No Coaches Found!</p>
           ) : (
             ''
           )}
-          {coaches.map((coach) => {
+          {filteredCoaches.map((coach) => {
             const isExpired = new Date(coach.departure_time) < new Date();
             return (
               <li

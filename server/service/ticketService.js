@@ -24,6 +24,10 @@ class TicketService {
   getSeatNumbersByCoachId(ticketDto) {
     return TicketDAO.getSeatNumbersByCoachId(ticketDto);
   }
+
+  getAllTicketsByUserId(ticketDto) {
+    return TicketDAO.getAllTicketsByUserId(ticketDto);
+  }
 }
 
 export default new TicketService();

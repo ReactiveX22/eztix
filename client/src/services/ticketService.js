@@ -19,6 +19,17 @@ class TicketService {
       throw new Error('Error creating ticket!');
     }
   };
+
+  fetchTicketsByCustomer = async (customerId) => {
+    try {
+      const response = await api.get(
+        endPoints.tickets.ticketsByCustomerId(customerId)
+      );
+      return response.data;
+    } catch (error) {
+      throw new Error('Error fetching user tickets!');
+    }
+  };
 }
 
 export default new TicketService();

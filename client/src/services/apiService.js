@@ -16,6 +16,9 @@ const endPoints = {
     seatNumbersByCoachId(id) {
       return `${this.all}/coaches/${id}/seats`;
     },
+    ticketsByCustomerId(id) {
+      return `${this.all}/user-tickets/${id}`;
+    },
   },
   customer: {
     all: '/customers',

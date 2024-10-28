@@ -1,12 +1,10 @@
 import { useCustomerContext } from '../contexts/CustomerContext';
 
 const LogoutBtn = () => {
-  const { phoneNumber, setPhoneNumber } = useCustomerContext();
+  const { logout } = useCustomerContext();
 
   function handleClick() {
-    sessionStorage.setItem('phoneNumber', '');
-    sessionStorage.setItem('customerId', '');
-    setPhoneNumber('');
+    logout();
   }
   return (
     <div>

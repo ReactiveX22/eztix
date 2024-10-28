@@ -65,6 +65,35 @@ class TicketController {
       res.status(500).json({ error: error.message });
     }
   }
+
+  async getUserTickets(req, res) {
+    try {
+      const customerId = req.params.customerId;
+      const results = await ticketService.getAllTicketsByUserId(customerId);
+      const response = {};
+
+      results.forEach((row) => {
+        const coachId = row.coach_id;
+
+        response[coachId] = {
+          start_location: row.start_location,
+          end_location: row.end_location,
+          seats: results
+            .filter((ticket) => ticket.coach_id === coachId)
+            .map((ticket) => ticket.seat_number),
+          departure_time: row.departure_time,
+          price: row.price,
+          total_price:
+            row.price *
+            results.filter((ticket) => ticket.coach_id === coachId).length,
+        };
+      });
+
+      res.json(response);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
 }
 
 export default new TicketController();

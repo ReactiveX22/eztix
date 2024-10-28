@@ -59,6 +59,7 @@ const NavBar = () => {
             create route
           </NavLink>
         </li>
+
         <li>
           <NavLink
             className={({ isActive }) =>
@@ -66,13 +67,27 @@ const NavBar = () => {
             }
             to='/login'
           >
-            {phoneNumber || 'login'}
+            {phoneNumber ? '' : 'login'}
           </NavLink>
         </li>
         {phoneNumber ? (
-          <li>
-            <LogoutBtn />
-          </li>
+          <>
+            <li>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? 'text-neutral'
+                    : 'text-neutral-500 hover:text-neutral'
+                }
+                to='/my-tickets'
+              >
+                my tickets
+              </NavLink>
+            </li>
+            <li>
+              <LogoutBtn />
+            </li>
+          </>
         ) : (
           ''
         )}

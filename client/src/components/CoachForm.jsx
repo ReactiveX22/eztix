@@ -5,7 +5,7 @@ import CoachInfo from './CoachInfo';
 
 const CoachForm = () => {
   const [price, setPrice] = useState(800);
-  const [departureTime, setDepartureTime] = useState('2024-08-12T08:00');
+  const [departureTime, setDepartureTime] = useState('');
   const [newCoach, setNewCoach] = useState(null);
 
   const { selectedRoute } = useRouteContext();
