@@ -71,6 +71,25 @@ class TicketDAO {
       .where('ticket.customer_id', customerId);
     return tickets;
   }
+
+  async getTicketsByCustomerAndCoach({ customerId, coachId }) {
+    const tickets = await db(this.table)
+      .select(
+        'customer.phone',
+        'ticket.coach_id',
+        'coach.departure_time',
+        'route.start_location',
+        'route.end_location',
+        'ticket.seat_number',
+        'coach.price'
+      )
+      .innerJoin('coach', 'ticket.coach_id', 'coach.id')
+      .innerJoin('route', 'coach.route_id', 'route.id')
+      .innerJoin('customer', 'ticket.customer_id', 'customer.id')
+      .where('ticket.customer_id', customerId)
+      .where('ticket.coach_id', coachId);
+    return tickets;
+  }
 }
 
 export default new TicketDAO();

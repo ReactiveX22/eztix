@@ -13,7 +13,7 @@
 
 @layer components {
   body {
-    @apply scrollbar-thin scrollbar-track-transparent scrollbar-thumb-zinc-800 scrollbar-thumb-rounded-md scroll-smooth bg-background font-inter text-base text-neutral;
+    @apply scroll-smooth bg-background font-inter text-base text-neutral scrollbar-thin scrollbar-track-transparent scrollbar-thumb-zinc-800 scrollbar-thumb-rounded-md;
   }
   .bookedSeat {
     @apply cursor-not-allowed border-red-900 text-red-600 opacity-50;

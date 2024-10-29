@@ -30,6 +30,17 @@ class TicketService {
       throw new Error('Error fetching user tickets!');
     }
   };
+
+  downloadTickets = async (customerId, coachId) => {
+    try {
+      const response = await api.get(
+        endPoints.tickets.ticketByCustomerAndCoach(customerId, coachId)
+      );
+      return response.data;
+    } catch (error) {
+      throw new Error('Error downloading user ticket!');
+    }
+  };
 }
 
 export default new TicketService();

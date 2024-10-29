@@ -28,6 +28,10 @@ class TicketService {
   getAllTicketsByUserId(ticketDto) {
     return TicketDAO.getAllTicketsByUserId(ticketDto);
   }
+
+  getTicketsByCustomerAndCoach(ticketDto) {
+    return TicketDAO.getTicketsByCustomerAndCoach(ticketDto);
+  }
 }
 
 export default new TicketService();

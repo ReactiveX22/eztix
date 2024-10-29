@@ -1,10 +1,15 @@
 import { format } from 'date-fns';
 import { CiRoute } from 'react-icons/ci';
 import { CiCalendarDate } from 'react-icons/ci';
+import TicketPDFDocument from './TicketPDFDocument';
 import { useUserTicketsContext } from '../contexts/UserTicketsContext';
+import { pdf } from '@react-pdf/renderer';
+import { useCustomerContext } from '../contexts/CustomerContext';
+import ticketService from '../services/ticketService';
 
 const MyTicketsList = () => {
   const { userTickets, loading } = useUserTicketsContext();
+  const { customerId } = useCustomerContext();
 
   if (loading) {
     return <div>Loading...</div>;
@@ -13,6 +18,35 @@ const MyTicketsList = () => {
   const formatDateTime = (timestamp) => {
     const date = new Date(timestamp);
     return format(date, 'd MMM, h:mm a');
+  };
+
+  const handlePrint = async (customerId, coachId) => {
+    try {
+      const ticket = await ticketService.downloadTickets(customerId, coachId);
+
+      console.log(ticket);
+
+      const blob = await pdf(<TicketPDFDocument ticket={ticket} />).toBlob();
+
+      const filename =
+        `ticket_${ticket.customer_phone}_${ticket.coach_id}.pdf`.replace(
+          /\s/g,
+          '_'
+        );
+
+      const urlObject = window.URL.createObjectURL(blob);
+
+      const a = document.createElement('a');
+      a.href = urlObject;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+
+      window.URL.revokeObjectURL(urlObject);
+    } catch (error) {
+      console.error('Error fetching user tickets:', error.message);
+    }
   };
 
   return (
@@ -47,7 +81,9 @@ const MyTicketsList = () => {
                   <h2>💵 {ticket.total_price} ৳</h2>
                 </div>
               </div>
-              <button>Print 🖨️</button>
+              <button onClick={() => handlePrint(customerId, ticketId)}>
+                Download ⬇️
+              </button>
             </div>
           </li>
         );

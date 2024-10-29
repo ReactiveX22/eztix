@@ -94,6 +94,42 @@ class TicketController {
       res.status(500).json({ message: error.message });
     }
   }
+
+  async getTicketsByCustomerAndCoach(req, res) {
+    try {
+      const customerId = req.params.customerId;
+      const coachId = req.params.coachId;
+
+      const results = await ticketService.getTicketsByCustomerAndCoach({
+        customerId,
+        coachId,
+      });
+
+      if (results.length === 0) {
+        return res.status(404).json({ message: 'No tickets found' });
+      }
+
+      const seats = results.map((ticket) => ticket.seat_number).join(', ');
+      const totalFare = (results[0].price * results.length).toFixed(2);
+
+      const response = {
+        customer_phone: results[0].phone,
+        coach_id: results[0].coach_id,
+        departure_time: results[0].departure_time,
+        start_location: results[0].start_location,
+        end_location: results[0].end_location,
+        seats: seats,
+        seats_fare: results[0].price,
+        total_fare: totalFare,
+      };
+
+      res.status(200).json(response);
+    } catch (error) {
+      res
+        .status(500)
+        .json({ message: 'Internal server error', error: error.message });
+    }
+  }
 }
 
 export default new TicketController();

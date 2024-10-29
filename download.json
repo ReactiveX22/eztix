@@ -1,0 +1,10 @@
+{
+  "customer_phone": "01653987005",
+  "coach_id": 5,
+  "departure_time": "2024-10-30T14:13:00.000Z",
+  "start_location": "Dhaka",
+  "end_location": "Chittagong",
+  "seats": "C1, D2, E1, E2, D1, C2",
+  "seats_fare": "800.00",
+  "total_fare": "4800.00"
+}
